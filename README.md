@@ -24,7 +24,7 @@ Authentication uses Google OAUTH by default, authenticating with a google apps
 domain associated with the currently accessed domain.
 
 During development, when a developer may potentially be away from the internet,
-they may manually log in using the developer OAUTH plugin, at https://litp.dev/auth/developer.
+they may manually log in using the developer OAUTH plugin, at https://archiver.dev/auth/developer.
 
 ## AWS configuration
 
@@ -46,7 +46,7 @@ they may manually log in using the developer OAUTH plugin, at https://litp.dev/a
     <AllowedHeader>Authorization</AllowedHeader>
   </CORSRule>
   <CORSRule>
-    <AllowedOrigin>https://litp.dev</AllowedOrigin>
+    <AllowedOrigin>https://archiver.dev</AllowedOrigin>
     <AllowedMethod>GET</AllowedMethod>
     <AllowedMethod>POST</AllowedMethod>
     <AllowedMethod>PUT</AllowedMethod>

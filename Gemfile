@@ -26,6 +26,7 @@ gem 'jbuilder', '~> 2.5'
 group :development, :test do
   gem 'byebug', platform: :mri
   gem 'pry-nav'
+  gem 'rb-readline'
 end
 
 group :development do

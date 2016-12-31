@@ -1,6 +1,7 @@
 @import "colors/application";
 
 body {
+  color: $text;
   display: block;
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-size: 10pt;
@@ -18,7 +19,7 @@ header {
 
   h1 {
     position: absolute;
-    right: 5em;
+    right: 4em;
     top: 0.7em;
   }
 }
@@ -34,24 +35,26 @@ header {
 nav {
   color: $inverse_text;
   position: absolute;
-  right: 1em;
+  right: 0;
   text-align: right;
-  top: 0.2em;
+  top: 0.3em;
 
   svg {
-    width: 2em;
-    height: 2em;
+    width: 1.8em;
+    height: 1.8em;
+    margin-bottom: 1px;
+    margin-right: 1em;
   }
 
   ul {
     display: none;
-    box-shadow: 0 0 1px 1px $background_dark;
+    box-shadow: 0 1px 8px 1px $background_dark;
   }
 
   li {
     background-color: $background;
     border-top: 0.5px solid $background_dark;
-    padding: 0.5em 1em 0.5em 2em;
+    padding: 0.5em 1.5em 0.5em 2em;
   }
 
   a {

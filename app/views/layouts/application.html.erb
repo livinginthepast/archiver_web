@@ -6,9 +6,28 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
   </head>
 
   <body>
-    <%= yield %>
+    <header>
+      <div id='logo'><%= link_to 'Archiver', root_path %></div>
+      <% if content_for? :current_action %>
+        <h1>
+          <%= content_for :current_action %>
+        </h1>
+      <% end %>
+    </header>
+
+    <nav>
+      <%= inline_svg 'hamburger.svg', alt: 'menu' %>
+      <ul>
+        <li><%= link_to 'settings', settings_path %></li>
+      </ul>
+    </nav>
+
+    <div id='page-content'>
+      <%= yield %>
+    </div>
   </body>
 </html>

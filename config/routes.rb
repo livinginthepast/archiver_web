@@ -9,5 +9,6 @@ Rails.application.routes.draw do
     get '/sign_in', to: 'auth/sessions#new', as: :sign_in
   end
 
+  get 'settings', to: 'settings#show', as: :settings
   root to: 'things#index'
 end

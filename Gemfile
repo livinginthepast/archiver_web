@@ -9,6 +9,7 @@ gem 'rails', '~> 5.0.1'
 
 gem 'aws-sdk'
 gem 'dalli'
+gem 'inline_svg'
 gem 'kaminari'
 gem 'lapine'
 gem 'nokogiri', '~> 1.6.8.1'

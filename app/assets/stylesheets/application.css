@@ -11,8 +11,9 @@
  * It is generally better to create a new file per style scope.
  *
  *= require reset
- *= require_tree .
  *= require_self
+ *= require layout/application
+ *= require_tree ./application
  */
 
 @viewport {

@@ -38,6 +38,7 @@ nav {
   right: 0;
   text-align: right;
   top: 0.3em;
+  z-index: 100;
 
   svg {
     width: 1.8em;
@@ -66,4 +67,21 @@ nav {
       display: block;
     }
   }
+}
+
+#page-content {
+  height: 100%;
+  position: relative;
+}
+
+a.action {
+  background: $action;
+  color: $inverse_text;
+  display: block;
+  float: right;
+  line-height: 1.2em;
+  padding: 0.2em;
+  position: absolute;
+  right: 1em;
+  top: 0.5em;
 }

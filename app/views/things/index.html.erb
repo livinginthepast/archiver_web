@@ -1,0 +1,11 @@
+<%= link_to '+', '', class: 'action new', data: { action: 'open', target: '#new_form' } %>
+
+<div id='new_form' class='pane'>
+  <%= link_to 'x', '', class: 'action close', data: { action: 'close', target: '#new_form' } %>
+  New
+</div>
+
+<div id='show' class='pane'>
+  <%= link_to 'x', '', class: 'action close', data: { action: 'close', target: '#show' } %>
+  Show
+</div>

@@ -10,5 +10,11 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require turbolinks
+//= require fetch/fetch
+//= require_self
 //= require_tree .
+
+{
+    if (window.archiver === undefined) window.archiver = {};
+}
+

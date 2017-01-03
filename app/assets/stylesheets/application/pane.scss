@@ -1,0 +1,16 @@
+@import "colors/application";
+
+.pane {
+  background: $white;
+  box-shadow: 0 1px 8px 1px $background_dark;
+  display: none;
+  float: right;
+  height: 100%;
+  padding: 1em;
+  width: 300px;
+
+  &.open {
+    display: block;
+  }
+}
+

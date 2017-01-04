@@ -1,9 +1,21 @@
 class Auth::GoogleController < ApplicationController
-  skip_before_action :require_user
+  include OmniauthConcerns
+
+  skip_before_action :require_profile
 
   def callback
-    session[omniauth_session_key] = request.env['omniauth.auth']
-    session[omniauth_session_key]['logged_in_at'] = Time.now.to_i
+    omniauth = Omniauth.google.where('lower(email) = :email',
+                                        email: omniauth_email.downcase).first
+    omniauth ||= Omniauth.google.create!(
+      profile: current_profile,
+      uid: omniauth_uid,
+      email: omniauth_email,
+      name: omniauth_name,
+      provider: 'developer',
+    )
+
+    self.session_profile_id = omniauth.profile_id
+
     redirect_to session['redirect_on_auth'] || root_path
   end
 

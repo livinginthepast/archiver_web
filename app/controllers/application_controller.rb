@@ -3,5 +3,5 @@ class ApplicationController < ActionController::Base
 
   protect_from_forgery with: :exception
 
-  before_action :require_user
+  before_action :require_profile
 end

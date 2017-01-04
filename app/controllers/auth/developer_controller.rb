@@ -1,12 +1,24 @@
 class Auth::DeveloperController < ApplicationController
+  include OmniauthConcerns
+
   skip_before_action :verify_authenticity_token
-  skip_before_action :require_user
+  skip_before_action :require_profile
 
   before_action :fail_unless_dev
 
   def callback
-    session[omniauth_session_key] = request.env['omniauth.auth']
-    session[omniauth_session_key]['logged_in_at'] = Time.now.to_i
+    omniauth = Omniauth.developer.where('lower(email) = :email',
+                                        email: omniauth_email.downcase).first
+    omniauth ||= Omniauth.developer.create!(
+      profile: current_profile,
+      uid: SecureRandom.uuid,
+      email: omniauth_email,
+      name: omniauth_name,
+      provider: 'developer',
+    )
+
+    self.session_profile_id = omniauth.profile_id
+
     redirect_to session['redirect_on_auth'] || root_path
   end
 

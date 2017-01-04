@@ -6,15 +6,10 @@ module AuthHelpers
   module ContextHelpers
     def authenticate!
       let(:user) {
-        User.new(
-          uid: SecureRandom.uuid,
-          email: Faker::Internet.email,
-          name: Faker::Name.name,
-          provider: 'google',
-        )
+        FactoryGirl.create(:profile)
       }
       before do
-        allow(controller).to receive(:current_user).and_return(user)
+        allow(controller).to receive(:current_profile).and_return(profile)
       end
     end
   end

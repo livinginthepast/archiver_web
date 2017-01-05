@@ -78,6 +78,7 @@ CREATE TABLE assets (
     id uuid DEFAULT uuid_generate_v4() NOT NULL,
     thing_id uuid NOT NULL,
     path character varying NOT NULL,
+    content_type character varying NOT NULL,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
     deleted_at timestamp without time zone

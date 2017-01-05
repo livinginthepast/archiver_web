@@ -1,9 +1,11 @@
 {
     class ThingUploader {
-        constructor(formSelector, fileSelector) {
+        constructor(formSelector, fileSelector, prefix, assetPathSelector, contentTypeSelector) {
             this.form = document.querySelector(formSelector);
             this.fileForm = document.querySelector(fileSelector);
-
+            this.prefix = prefix;
+            this.assetPathSelector = assetPathSelector;
+            this.contentTypeSelector = contentTypeSelector;
 
             this.fileInput = this.fileForm.querySelector('input[type=file]');
             this.label = this.fileForm.querySelector('label');
@@ -43,6 +45,8 @@
             this.fileForm.classList.remove('uploading');
             this.fileForm.classList.remove('with_files');
             this.fileForm.classList.remove('success');
+            this.fileForm.classList.remove('error');
+            this.fileForm.reset();
             this.files = new Array();
             this.delay(this.updateSubmit.bind(this));
             this.delay(this.updateLabel.bind(this));
@@ -124,10 +128,8 @@
 
             this.fileForm.classList.add('uploading');
 
-            var prefix = this.artistIdentifier + '/' + this.artworkIdentifier;
-
             this.files.forEach(function(file) {
-                var uploader = new Uploader(prefix, file, 'Artwork', this.artworkId);
+                var uploader = new Uploader(this.prefix, file);
                 uploader.upload();
             }.bind(this));
         }
@@ -136,23 +138,28 @@
         //******************** CALLBACK
         //
         finish () {
-            this.fileForm.classList.add('success');
             this.delay(this.clear.bind(this), 2000);
         }
 
         handleUploadFailure (e) {
+            this.fileForm.classList.add('error');
             console.error('UPLOAD FAILURE', e);
+            this.finish();
         }
 
         handleUploadSuccess(e) {
             var uploader = e.detail.uploader;
+            this.fileForm.classList.add('success');
+            this.form.querySelector(this.assetPathSelector).value = uploader.key();
+            this.form.querySelector(this.contentTypeSelector).value = uploader.contentType();
+            this.finish();
         }
     }
 
     window.archiver.things = {
-        initialize: function(formSelector, fileSelector) {
+        initialize: function(formSelector, fileSelector, prefix, assetPathSelector, contentTypeSelector) {
             $$(document).ready(function() {
-                new ThingUploader(formSelector, fileSelector);
+                new ThingUploader(formSelector, fileSelector, prefix, assetPathSelector, contentTypeSelector);
             });
         }
     }

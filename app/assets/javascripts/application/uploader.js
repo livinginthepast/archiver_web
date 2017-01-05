@@ -10,6 +10,10 @@ class Uploader {
     return this.prefix + '/' + this.file.name;
   }
 
+  contentType () {
+    return this.file.type;
+  }
+
   upload () {
     console.log('beginning upload');
     fetch(this._presignUrl(), {
@@ -70,7 +74,7 @@ class Uploader {
     console.log('uploading to S3', presigningResponse);
 
     var headers = new Headers();
-    headers.append('Content-Type', this.file.type);
+    headers.append('Content-Type', this.contentType());
 
     this.state = 'uploading';
     fetch(presigningResponse.presigned_url,

@@ -16,15 +16,21 @@
     </div>
     <div class="uploader__uploading">Uploading&hellip;</div>
     <div class="uploader__success">Done!</div>
-    <div class="uploader__error">Error! <span></span>.</div>
+    <div class="uploader__error">Error!</div>
   </form>
 
   <%= form_for @new do |f| %>
-    <%= f.text_field :name %>
+    <%= f.label :name do %>
+      Name
+      <%= f.text_field :name %>
+    <% end %>
 
     <%= f.fields_for :asset, @new.asset do |asset| %>
       <%= asset.hidden_field :path %>
+      <%= asset.hidden_field :content_type %>
     <% end %>
+
+    <%= f.submit 'Save' %>
   <% end %>
 </div>
 
@@ -33,9 +39,26 @@
   Show
 </div>
 
+<table>
+  <thead>
+  </thead>
+  <tbody>
+    <% @things.each do |thing| %>
+      <tr>
+        <td>
+          <%= thing.name %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
 <%= javascript_tag do %>
   window.archiver.things.initialize(
     'form.new_thing',
-    'form.image_upload'
+    'form.image_upload',
+    '<%= current_profile.id %>',
+    '#thing_asset_path',
+    '#thing_asset_content_type'
   )
 <% end %>

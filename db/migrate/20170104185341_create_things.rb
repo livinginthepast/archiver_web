@@ -44,6 +44,7 @@ class CreateThings < ActiveRecord::Migration[5.0]
     create_table :assets, id: :uuid do |t|
       t.references :thing, type: :uuid, null: false
       t.string :path, null: false
+      t.string :content_type, null: false
 
       t.timestamps null: false
       t.datetime :deleted_at

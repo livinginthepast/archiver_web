@@ -84,4 +84,8 @@ a.action {
   position: absolute;
   right: 1em;
   top: 0.5em;
+
+  &:hover {
+    background: $action_hover;
+  }
 }

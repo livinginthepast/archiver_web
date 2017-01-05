@@ -52,6 +52,8 @@ class CreateThings < ActiveRecord::Migration[5.0]
     reversible do |dir|
       dir.up {
         execute 'create index index_omniauths_on_email on omniauths(lower(email))'
+        execute 'create index index_things_on_profile on things(profile_id)'
+        execute 'create index index_assets_on_thing on assets(thing_id) where deleted_at is null'
       }
 
       dir.down {}

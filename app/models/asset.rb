@@ -12,4 +12,6 @@
 
 class Asset < ApplicationRecord
   belongs_to :thing
+
+  default_scope ->() { where(deleted_at: nil) }
 end

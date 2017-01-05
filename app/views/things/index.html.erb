@@ -3,9 +3,39 @@
 <div id='new_form' class='pane'>
   <%= link_to 'x', '', class: 'action close', data: { action: 'close', target: '#new_form' } %>
   New
+
+  <form class="uploader image_upload" method="post" action="" enctype="multipart/form-data">
+    <div class="uploader__input">
+      <input class="uploader__file" type="file" name="files[]" id="file" />
+      <label for="file" data-multiple-caption="{count} files selected">
+        <%= inline_svg 'forms/file_input.svg' %>
+        Choose a file
+        <span class="uploader__dragndrop"> or drag it here</span>.
+      </label>
+      <button class="uploader__button" type="submit">Upload</button>
+    </div>
+    <div class="uploader__uploading">Uploading&hellip;</div>
+    <div class="uploader__success">Done!</div>
+    <div class="uploader__error">Error! <span></span>.</div>
+  </form>
+
+  <%= form_for @new do |f| %>
+    <%= f.text_field :name %>
+
+    <%= f.fields_for :asset, @new.asset do |asset| %>
+      <%= asset.hidden_field :path %>
+    <% end %>
+  <% end %>
 </div>
 
 <div id='show' class='pane'>
   <%= link_to 'x', '', class: 'action close', data: { action: 'close', target: '#show' } %>
   Show
 </div>
+
+<%= javascript_tag do %>
+  window.archiver.things.initialize(
+    'form.new_thing',
+    'form.image_upload'
+  )
+<% end %>

@@ -183,6 +183,13 @@ ALTER TABLE ONLY things
 
 
 --
+-- Name: index_assets_on_thing; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_assets_on_thing ON assets USING btree (thing_id) WHERE (deleted_at IS NULL);
+
+
+--
 -- Name: index_assets_on_thing_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -201,6 +208,13 @@ CREATE INDEX index_omniauths_on_email ON omniauths USING btree (lower((email)::t
 --
 
 CREATE INDEX index_omniauths_on_profile_id ON omniauths USING btree (profile_id);
+
+
+--
+-- Name: index_things_on_profile; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_things_on_profile ON things USING btree (profile_id);
 
 
 --

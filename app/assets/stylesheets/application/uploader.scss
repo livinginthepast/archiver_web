@@ -1,0 +1,111 @@
+@import "colors/application";
+
+form.uploader {
+  background-color: $action;
+  border: 0.5px solid $action_hover;
+  border-radius: 2px;
+  margin-top: 1em;
+  outline: 2px dashed $inverse_text;
+  outline-offset: -10px;
+  padding: 18%;
+  position: relative;
+  text-align: center;
+
+  .uploader__input {
+    color: $inverse_text;
+    text-align: center;
+  }
+
+  svg {
+    display: block;
+    fill: currentColor;
+    margin-bottom: 1.5em;
+    width: 100%;
+  }
+
+  input[type=file] {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+  }
+
+  label {
+    cursor: pointer;
+    display: block;
+    font-size: 1.2em;
+    font-weight: bold;
+
+    span {
+      font-weight: normal;
+    }
+  }
+
+  .uploader__dragndrop {
+    display: inline;
+  }
+
+  .uploader__button {
+    background-color: $action_hover;
+    cursor: pointer;
+
+    &:hover {
+      letter-spacing: 1px;
+    }
+  }
+
+  .uploader__button,
+  .uploader__uploading,
+  .uploader__success,
+  .uploader__error {
+    color: $inverse_text;
+    border: none;
+    display: none;
+    margin: 2em auto;
+    padding: 1em 1.5em;
+  }
+
+  &:hover {
+    background-color: $action_hover;
+    border: 0.5px solid $action;
+
+    .uploader__button {
+      background-color: $action;
+    }
+  }
+
+  &.dragover {
+    background-color: $background;
+  }
+
+
+  &.with_files {
+    .uploader__button {
+      display: block;
+    }
+  }
+
+  &.uploading {
+    .uploader__button {
+      display: none;
+    }
+
+    .uploader__uploading {
+      display: block;
+    }
+  }
+
+  &.success {
+    .uploader__button,
+    .uploader__uploading {
+      display: none;
+    }
+
+    .uploader__success {
+      display: block;
+    }
+  }
+}
+

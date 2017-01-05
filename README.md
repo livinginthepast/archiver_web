@@ -32,8 +32,9 @@ they may manually log in using the developer OAUTH plugin, at https://archiver.d
 * Go to S3 service
 * Create two buckets, altered to be an original name
   * Check which region you pick for the bucket
+  * `######-uploads`
   * `######-originals`
-  * `######-thumbnails`
+  * `######-processed`
   * Consider adding a lifecycle rule to delete assets after a day or two
   * Add the following CORS rule to the originals bucket
   ```
@@ -75,8 +76,9 @@ they may manually log in using the developer OAUTH plugin, at https://archiver.d
     ],
     "Effect": "Allow",
     "Resource": [
+      "arn:aws:s3:::######-uploads",
       "arn:aws:s3:::######-originals",
-      "arn:aws:s3:::######-thumbnails"
+      "arn:aws:s3:::######-processed"
     ]
   },
   {
@@ -86,8 +88,9 @@ they may manually log in using the developer OAUTH plugin, at https://archiver.d
     ],
     "Effect": "Allow",
     "Resource": [
+      "arn:aws:s3:::######-uploads/*",
       "arn:aws:s3:::######-originals/*",
-      "arn:aws:s3:::######-thumbnails/*"
+      "arn:aws:s3:::######-processed/*"
     ]
   }
   ]
@@ -99,11 +102,12 @@ they may manually log in using the developer OAUTH plugin, at https://archiver.d
   * Add it to the group created above
 * Add the access key id and secret access key to `.envrc`
 ```
-export DEV_AWS_REGION=#######                       # ie us-west-1
-export DEV_AWS_ORIGINAL_BUCKET=######-originals
-export DEV_AWS_THUMBNAIL_BUCKET=######-thumbnails
-export DEV_AWS_ACCESS_KEY_ID=XXXXXXXX
-export DEV_AWS_SECRET_KEY=XXXXXXXXX
+export AWS_REGION=#######                       # ie us-west-1
+export AWS_UPLOADS_BUCKET=######-uploads
+export AWS_ORIGINALS_BUCKET=######-originals
+export AWS_PROCESSED_BUCKET=######-processed
+export AWS_ACCESS_KEY_ID=XXXXXXXX
+export AWS_SECRET_KEY=XXXXXXXXX
 ```
 
 Note that if the file is not uploaded, there are multiple places this could have

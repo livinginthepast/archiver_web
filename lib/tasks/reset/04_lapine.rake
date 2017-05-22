@@ -13,3 +13,5 @@ namespace :reset do
     end
   end
 end
+
+task reset: 'reset:lapine'

@@ -5,24 +5,24 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-gem 'rails', '~> 5.0.1'
+gem 'rails', '~> 5.1.x'
 
 gem 'aws-sdk'
 gem 'dalli'
 gem 'inline_svg'
 gem 'kaminari'
 gem 'lapine'
-gem 'nokogiri', '~> 1.6.8.1'
 gem 'omniauth-google-oauth2'
 gem 'pg'
 gem 'puma', '~> 3.0'
 gem 'rails_middleware_delegator'
-gem 'sass-rails', '~> 5.0'
+gem 'sass-rails', github: 'rails/sass-rails'
 gem 'uglifier', '>= 1.3.0'
 gem 'virtus'
 
 gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
+gem 'webpacker', github: 'rails/webpacker'
 
 group :development, :test do
   gem 'byebug', platform: :mri
@@ -48,5 +48,3 @@ group :test do
   gem 'shoulda-matchers'
 end
 
-# Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
